@@ -1,4 +1,5 @@
 name: my-first-workflow
+
 # To get the trigger on every push in this repo on any branch
 on: push
 
@@ -9,25 +10,23 @@ jobs:
     steps:
       - name: Running single command in Job 1
         run: echo "Hi this is my first workflow"
-
       - name: Checking OS release for github hosted runner
         run: cat /etc/os-release
-
       - name: Calling sleep
-        run: sleep 20 
+        run: sleep 20
 
   job2:
     name: JOB2
     runs-on: ubuntu-latest
     steps:
-      - name: Checking the hostname for runner 
+      - name: Checking the hostname for runner
         run: hostname
-
       - name: Running the multiple commands
         run: |
-          echo " hi this is shankhan "
-          echo " Current time is 'date'"
+          echo "hi this is shankhan"
+          echo "Current time is $(date)"
           sleep 20
+
   job3:
     name: JOB3
     needs: job1
@@ -35,11 +34,11 @@ jobs:
     steps:
       - name: Runs jobs with Single Dependency
         run: sleep 10
-          
+
   job4:
-    - name: JOB4
-      needs: [job1 , job2 , job3]
-      runs-on: ubuntu-latest
-      steps:
-        - name: Jobs for multiple dependencies
-          run: sleep 10
+    name: JOB4
+    needs: [job1, job2, job3]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Jobs for multiple dependencies
+        run: sleep 10
