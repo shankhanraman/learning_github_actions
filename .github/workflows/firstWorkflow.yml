@@ -1,6 +1,7 @@
 name: my-first-workflow
 
 on:
+  push:
   schedule:
     - cron: '5 * * * *'
 
@@ -11,8 +12,10 @@ jobs:
     steps:
       - name: Running single command in Job 1
         run: echo "Hi this is my first workflow"
+
       - name: Checking OS release for github hosted runner
         run: cat /etc/os-release
+
       - name: Calling sleep
         run: sleep 20
 
@@ -22,6 +25,7 @@ jobs:
     steps:
       - name: Checking the hostname for runner
         run: hostname
+
       - name: Running the multiple commands
         run: |
           echo "hi this is shankhan"
