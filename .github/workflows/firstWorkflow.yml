@@ -17,6 +17,12 @@ jobs:
 
       - name: Step-3
         run: |
-          pwd
+          pwd >> myartifact.txt
           ls -ltr
           hostname
+
+      - name: Upload a single file
+        uses: actions/upload-artifact@v4
+        with:
+          name: single_file
+          path: ./myartifact.txt
