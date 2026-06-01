@@ -2,10 +2,19 @@ name: my-first-workflow
 on:
   push:
     branches:
+      - dev
+      - 'feature-*'
       - main
   pull_request:
     branches:
         - main
+
+env:
+  ENV_TYPE: dev
+  APP_USER: Thinknyx
+  APP_PORT: 80
+  
+  
 jobs:
   job1:
     name: JOB1
@@ -44,9 +53,8 @@ jobs:
         with:
           name: single_file
 
-      - name: Checking current directory post download
-        run: |
-          pwd
-          ls -ltr
-      - name: Step for PR demo
-        run: exit 0
+      - name: Referring  Environment Variables
+        run : |
+            echo "Environment Type is $ENV_TYPE"
+            echo "Application User is $APP_USER"
+            echo "Application Port is $APP_PORT"
