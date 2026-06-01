@@ -2,8 +2,6 @@ name: my-first-workflow
 on:
   push:
     branches:
-      - dev
-      - 'feature-*'
       - main
   pull_request:
     branches:
@@ -58,3 +56,7 @@ jobs:
             echo "Environment Type is $ENV_TYPE"
             echo "Application User is $APP_USER"
             echo "Application Port is $APP_PORT"
+       
+      - name: Referring Referring secrets
+        run : |
+            echo "Password is ${{ secrets.APP_PASSWORD }}"       
