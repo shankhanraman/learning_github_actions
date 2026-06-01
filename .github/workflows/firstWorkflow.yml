@@ -63,7 +63,7 @@ jobs:
           ls -ltr
 
       - name: Download single file artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: single_file
 
@@ -83,7 +83,7 @@ jobs:
           ls -ltr
 
       - name: Download directory  
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: directory artifacts
 
@@ -106,12 +106,12 @@ jobs:
           pwd
           ls -ltr
       - name: Download single file artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: single_file
           path: single_file
       - name: Download directory  
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: directory artifacts
           path: directory
