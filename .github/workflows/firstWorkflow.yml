@@ -85,7 +85,7 @@ jobs:
       - name: Download directory  
         uses: actions/download-artifact@v8
         with:
-          name: directory artifacts
+          name: directory_artifacts
 
       - name: Checking current directory post download
         run: |
@@ -113,7 +113,7 @@ jobs:
       - name: Download directory  
         uses: actions/download-artifact@v8
         with:
-          name: directory artifacts
+          name: directory_artifacts
           path: directory
 
       - name: Checking current directory post download
