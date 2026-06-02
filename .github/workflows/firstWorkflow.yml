@@ -81,6 +81,7 @@ jobs:
         run: echo "[INFO] Password is ${{vars.USER}} using ${{vars.PASSWORD}}"
     environment:
       name: STAGING
+    if: github.ref == 'refs/heads/dev'
 
   production:
     name: Production Deployment
@@ -92,3 +93,4 @@ jobs:
         run: echo "[INFO] Password is ${{vars.USER}} using ${{vars.PASSWORD}}"
     environment:
       name: PRODUCTION
+    if: github.ref == 'refs/heads/main'  
