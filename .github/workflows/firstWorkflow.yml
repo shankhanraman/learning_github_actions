@@ -5,14 +5,13 @@ on:
       - main
   pull_request:
     branches:
-        - main
+      - main
 
 env:
   ENV_TYPE: dev
   APP_USER: Thinknyx
   APP_PORT: 80
-  
-  
+
 jobs:
   job1:
     name: JOB1
@@ -36,7 +35,6 @@ jobs:
           name: single_file
           path: ./myartifact.txt
 
-
   job2:
     name: JOB2
     needs: job1
@@ -51,16 +49,16 @@ jobs:
         with:
           name: single_file
 
-      - name: Referring  Environment Variables
-        run : |
-            echo "Environment Type is $ENV_TYPE"
-            echo "Application User is $APP_USER"
-            echo "Application Port is $APP_PORT"
-       
-      - name: Referring Referring secrets
-        run : |
-            echo "Password is ${{ secrets.APP_PASSWORD }}" 
-    
+      - name: Referring Environment Variables
+        run: |
+          echo "Environment Type is $ENV_TYPE"
+          echo "Application User is $APP_USER"
+          echo "Application Port is $APP_PORT"
+
+      - name: Referring secrets
+        run: |
+          echo "Password is ${{ secrets.APP_PASSWORD }}"
+
   job3:
     name: JOB3
     runs-on: ubuntu-latest
@@ -69,6 +67,28 @@ jobs:
         run: |
           echo "[INFO] Triggering event is ${{ github.event_name }}"
           echo "[INFO] Repository name is ${{ github.repository }}"
-          echo "[INFO] New changes are added by  ${{ github.actor }} in the branch ${{ github.ref }}"
+          echo "[INFO] New changes are added by ${{ github.actor }} in the branch ${{ github.ref }}"
           echo "[INFO] Current Step is running on ${{ runner.os }} with runner name ${{ runner.name }}"
           echo "[INFO] Current job id is ${{ job.id }}"
+
+  staging:
+    name: Staging Deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Referring Environment Variables
+        run: echo "[INFO] Running deployment on ${{vars.HOST}} using ${{vars.USER}}"
+      - name: Referring secrets
+        run: echo "[INFO] Password is ${{vars.USER}} using ${{vars.PASSWORD}}"
+    environment:
+      name: STAGING
+
+  production:
+    name: Production Deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Referring Environment Variables
+        run: echo "[INFO] Running deployment on ${{vars.HOST}} using ${{vars.USER}}"
+      - name: Referring secrets
+        run: echo "[INFO] Password is ${{vars.USER}} using ${{vars.PASSWORD}}"
+    environment:
+      name: PRODUCTION
