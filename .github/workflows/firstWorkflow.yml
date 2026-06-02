@@ -67,7 +67,7 @@ jobs:
         run: |
           echo "[INFO] Triggering event is ${{ github.event_name }}"
           echo "[INFO] Repository name is ${{ github.repository }}"
-          echo "[INFO] New changes are added by ${{ github.actor }} in the branch ${{ github.ref }}"
+          echo "[INFO] New changes are added by ${{ github.actor }} in the branch ${{ github.head_ref }}"
           echo "[INFO] Current Step is running on ${{ runner.os }} with runner name ${{ runner.name }}"
           echo "[INFO] Current job id is ${{ job.id }}"
 
@@ -81,7 +81,7 @@ jobs:
         run: echo "[INFO] Password is ${{vars.USER}} using ${{vars.PASSWORD}}"
     environment:
       name: STAGING
-    if: github.ref == 'refs/heads/dev'
+    if: github.head_ref == 'dev'
 
   production:
     name: Production Deployment
@@ -93,4 +93,4 @@ jobs:
         run: echo "[INFO] Password is ${{vars.USER}} using ${{vars.PASSWORD}}"
     environment:
       name: PRODUCTION
-    if: github.ref == 'refs/heads/main'  
+    if: github.head_ref == 'main'  
