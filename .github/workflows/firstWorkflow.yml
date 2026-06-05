@@ -99,6 +99,7 @@ jobs:
           file: ./Dockerfile 
           push: false
           tags: thinkynx_app:${{ steps.vars.outputs.IMAGE_TAG }}
+          load: true
       - name: Save Docker Image
         run: docker save thinkynx_app:${{ steps.vars.outputs.IMAGE_TAG }} -o thinkynx_app.tar    
       - name: Upload Docker Image
